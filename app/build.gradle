@@ -4,12 +4,14 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.ayaigi'
+
 android {
     namespace 'com.ayaigi.jitpacktest'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ayaigi.jitpacktest"
+        //applicationId "com.ayaigi.jitpacktest"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -42,17 +44,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
-
-afterEvaluate {
-    publishing {
-        publications {
-            // Creates a Maven publication called "release".
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.ayaigi'
-                artifactId = 'JitpackTest'
-                version = '1.0.0'
-            }
+publishing {
+    publications {
+        // Creates a Maven publication called "release".
+        release(MavenPublication) {
+            from components.release
+            groupId = 'com.github.ayaigi'
+            artifactId = 'JitpackTest'
+            version = '1.0.0'
         }
     }
+}
+//afterEvaluate {}
+wrapper {
+    gradleVersion = "8.0.0"
+    distributionType = Wrapper.DistributionType.ALL
 }
